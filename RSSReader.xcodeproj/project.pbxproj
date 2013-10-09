@@ -36,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		17BBB7A017C582FE004D46D9 /* baynote.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = baynote.js; sourceTree = "<group>"; };
 		17D1B82217B1CBE50027B441 /* RSSReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RSSReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17D1B82517B1CBE50027B441 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		17D1B82717B1CBE50027B441 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -124,6 +125,7 @@
 				17D1B83D17B1CBE50027B441 /* BNMasterViewController.h */,
 				17D1B83E17B1CBE50027B441 /* BNMasterViewController.m */,
 				17D1B84017B1CBE50027B441 /* BNDetailViewController.h */,
+				17BBB7A017C582FE004D46D9 /* baynote.js */,
 				17D1B84117B1CBE50027B441 /* BNDetailViewController.m */,
 				17D1B84317B1CBE50027B441 /* Images.xcassets */,
 				17D1B82C17B1CBE50027B441 /* Supporting Files */,
@@ -208,6 +210,9 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = Baynote;
 				TargetAttributes = {
+					17D1B82117B1CBE50027B441 = {
+						DevelopmentTeam = 9659H5FYMY;
+					};
 					17D1B84817B1CBE50027B441 = {
 						TestTargetID = 17D1B82117B1CBE50027B441;
 					};
@@ -395,6 +400,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RSSReader/RSSReader-Prefix.pch";
 				INFOPLIST_FILE = "RSSReader/RSSReader-Info.plist";
@@ -408,6 +414,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RSSReader/RSSReader-Prefix.pch";
 				INFOPLIST_FILE = "RSSReader/RSSReader-Info.plist";
@@ -475,6 +482,7 @@
 				17D1B85C17B1CBE50027B441 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		17D1B85D17B1CBE50027B441 /* Build configuration list for PBXNativeTarget "RSSReaderTests" */ = {
 			isa = XCConfigurationList;
@@ -483,6 +491,7 @@
 				17D1B85F17B1CBE50027B441 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

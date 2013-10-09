@@ -40,11 +40,15 @@
     }
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
-    [self configureView];
+    NSString *urlString = [self.url stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    NSURL *myUrl = [NSURL URLWithString: [urlString stringByAddingPercentEscapesUsingEncoding:
+                                          NSUTF8StringEncoding]];
+    
+    NSURLRequest *request = [NSURLRequest requestWithURL:myUrl];
+    
+    [self.webView loadRequest:request];
 }
 
 - (void)didReceiveMemoryWarning

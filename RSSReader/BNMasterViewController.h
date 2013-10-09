@@ -10,8 +10,10 @@
 
 @class BNDetailViewController;
 
-@interface BNMasterViewController : UITableViewController
+@interface BNMasterViewController : UITableViewController <NSXMLParserDelegate>
 
 @property (strong, nonatomic) BNDetailViewController *detailViewController;
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
+@property(nonatomic) CGSize preferredContentSize;
 
 @end
