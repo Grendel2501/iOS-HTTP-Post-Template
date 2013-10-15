@@ -170,7 +170,7 @@
         
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         NSString *linkUrl = [feeds[indexPath.row] objectForKey: @"link"];
-        NSString *xhrUrl = [@"https://api-ssl.bitly.com/v3/user/link_save?access_token=ACCESS_TOKEN&longUrl=" stringByAppendingString: linkUrl];
+        NSString *xhrUrl = [NSString stringWithFormat:@"%@%@", @"https://api-ssl.bitly.com/v3/user/link_save?access_token=ACCESS_TOKEN&longUrl=",linkUrl];
         
         //prepare request
         NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
