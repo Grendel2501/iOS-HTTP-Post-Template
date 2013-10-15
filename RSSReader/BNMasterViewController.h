@@ -3,7 +3,7 @@
 //  RSSReader
 //
 //  Created by Richard Bakare on 8/6/13.
-//  Copyright (c) 2013 Baynote. All rights reserved.
+//  Copyright (c) 2013 Richard Bakare. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
@@ -15,5 +15,6 @@
 @property (strong, nonatomic) BNDetailViewController *detailViewController;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property(nonatomic) CGSize preferredContentSize;
+- (IBAction)sendClick:(id)sender;
 
 @end

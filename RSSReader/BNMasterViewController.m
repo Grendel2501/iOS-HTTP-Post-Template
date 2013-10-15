@@ -3,12 +3,14 @@
 //  RSSReader
 //
 //  Created by Richard Bakare on 8/6/13.
-//  Copyright (c) 2013 Baynote. All rights reserved.
+//  Copyright (c) 2013 Richard Bakare. All rights reserved.
 //
 
 #import "BNMasterViewController.h"
 
 #import "BNDetailViewController.h"
+
+#import <JavaScriptCore/JavaScriptCore.h>
 
 @interface BNMasterViewController () {
     NSMutableArray *_objects;
@@ -27,8 +29,8 @@
 {
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
         self.clearsSelectionOnViewWillAppear = NO;
-        // self.UIViewController.preferredContentSize(320.0, 600.0);
-        self.contentSizeForViewInPopover = CGSizeMake(320.0, 600.0);
+        //self.UIViewController.preferredContentSize(320.0, 600.0);
+        //self.contentSizeForViewInPopover = CGSizeMake(320.0, 600.0);
     }
     [super awakeFromNib];
 }
@@ -155,7 +157,6 @@
         [feeds addObject:[item copy]];
         
     }
-    
 }
 
 - (void)parserDidEndDocument:(NSXMLParser *)parser {
@@ -168,9 +169,42 @@
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
         
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        NSString *string = [feeds[indexPath.row] objectForKey: @"link"];
-        [[segue destinationViewController] setUrl:string];
+        NSString *linkUrl = [feeds[indexPath.row] objectForKey: @"link"];
+        NSString *xhrUrl = [@"https://api-ssl.bitly.com/v3/user/link_save?access_token=ACCESS_TOKEN&longUrl=" stringByAppendingString: linkUrl];
         
+        //prepare request
+        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+        [request setURL:[NSURL URLWithString:xhrUrl]];
+        [request setHTTPMethod:@"POST"];
+        
+        //set headers
+        NSString *contentType = [NSString stringWithFormat:@"text/xml"];
+        [request addValue:contentType forHTTPHeaderField: @"Content-Type"];
+        
+        //create the body
+        NSMutableData *postBody = [NSMutableData data];
+        [postBody appendData:[[NSString stringWithFormat:@"<xml>"] dataUsingEncoding:NSUTF8StringEncoding]];
+        [postBody appendData:[[NSString stringWithFormat:@"<data/>"] dataUsingEncoding:NSUTF8StringEncoding]];
+        [postBody appendData:[[NSString stringWithFormat:@"</xml>"] dataUsingEncoding:NSUTF8StringEncoding]];
+        
+        //post
+        [request setHTTPBody:postBody];
+        
+        //get response
+        NSHTTPURLResponse* urlResponse = nil;
+        NSError *error = [[NSError alloc] init];
+        NSData *responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&urlResponse error:&error];
+        NSString *result = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
+        NSLog(@"Response Code: %d", [urlResponse statusCode]);
+        if ([urlResponse statusCode] >= 200 && [urlResponse statusCode] < 300) {
+            NSLog(@"Response: %@", result);
+            
+        //here you get the response
+            
+        }
+        
+        //open article
+        [[segue destinationViewController] setUrl:linkUrl];
     }
 }
 

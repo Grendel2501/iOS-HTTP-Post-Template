@@ -3,7 +3,7 @@
 //  RSSReader
 //
 //  Created by Richard Bakare on 8/6/13.
-//  Copyright (c) 2013 Baynote. All rights reserved.
+//  Copyright (c) 2013 Richard Bakare. All rights reserved.
 //
 
 #import "BNDetailViewController.h"
