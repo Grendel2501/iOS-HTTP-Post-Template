@@ -1,0 +1,39 @@
+//the steps within someUiMethod can be placed in a seperate header/implementation file and called with your main .m file. 
+- (void)someUiMethod:(UIStoryboardSegue *)segue sender:(id)sender {	
+	
+	//set the XHR URL for where post will be sent
+	NSString *xhrUrl = [@"https://api-ssl.bitly.com/v3/user/link_save?access_token=ACCESS_TOKEN&longUrl=" stringByAppendingString: linkUrl];
+	
+	//prepare request
+	NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+	[request setURL:[NSURL URLWithString:xhrUrl]];
+	[request setHTTPMethod:@"POST"];
+	
+	//set headers
+	NSString *contentType = [NSString stringWithFormat:@"text/xml"];
+	[request addValue:contentType forHTTPHeaderField: @"Content-Type"];
+	
+	//create the body
+	NSMutableData *postBody = [NSMutableData data];
+	[postBody appendData:[[NSString stringWithFormat:@"<xml>"] dataUsingEncoding:NSUTF8StringEncoding]];
+	[postBody appendData:[[NSString stringWithFormat:@"<data/>"] dataUsingEncoding:NSUTF8StringEncoding]];
+	[postBody appendData:[[NSString stringWithFormat:@"</xml>"] dataUsingEncoding:NSUTF8StringEncoding]];
+	
+	//post
+	[request setHTTPBody:postBody];
+	
+	//get response
+	NSHTTPURLResponse* urlResponse = nil;
+	NSError *error = [[NSError alloc] init];
+	NSData *responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&urlResponse error:&error];
+	NSString *result = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
+	NSLog(@"Response Code: %d", [urlResponse statusCode]);
+	if ([urlResponse statusCode] >= 200 && [urlResponse statusCode] < 300) {
+	NSLog(@"Response: %@", result);
+	
+	//here you get the response
+	
+	}
+	//below will vary based on app usage
+	[[segue destinationViewController] someMethod:someValue];
+}
