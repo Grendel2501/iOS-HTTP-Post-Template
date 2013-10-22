@@ -7,7 +7,7 @@ An iOS RSS Reader app template that includes a method for sending an HTTP Post t
 
 **Blog** post: http://richardbakare.com/sending-http-posts-ios/
 
-**GitHub**: https://github.com/Grendel2501/iOS-HTTP-Post-Template/
+**GitHub**: https://github.com/Grendel2501/iOS-HTTP-Post-Template
 
 Usage:
 ------
